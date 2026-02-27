@@ -1,4 +1,4 @@
-name: Build Minecraft Plugin
+name: Build
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -21,18 +21,14 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
-      - name: Get Short SHA
-        id: slug
-        run: echo "sha8=$(echo ${GITHUB_SHA} | cut -c1-8)" >> $GITHUB_OUTPUT
-
-      - name: Build with Maven
-        run: mvn -B clean package --file pom.xml
+      # 这里就是你要的：显式调用 compile 和 jar:jar
+      # 注意：必须先 compile，否则 target/classes 是空的，打出来的包也是空的
+      - name: Build with Maven Jar Plugin
+        run: mvn -B clean compile jar:jar --file pom.xml
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: KeepInventory-Build-${{ steps.slug.outputs.sha8 }}
-          path: |
-            target/*.jar
-            !target/original-*.jar
+          name: Plugin-Jar
+          path: target/*.jar
           if-no-files-found: error
