@@ -107,7 +107,7 @@
         <dependency>
             <groupId>com.github.EarlyDreamLand</groupId>
             <artifactId>vilib</artifactId>
-            <version>7686dee9bf</version>
+            <version>7e1189be01</version>
             <scope>compile</scope>
         </dependency>
 
