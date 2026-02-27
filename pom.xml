@@ -105,9 +105,9 @@
         </dependency>
 
         <dependency>
-            <groupId>com.github.Efnilite</groupId>
+            <groupId>com.github.EarlyDreamLand</groupId>
             <artifactId>vilib</artifactId>
-            <version>v1.2.0</version>
+            <version>7686dee9bf</version>
             <scope>compile</scope>
         </dependency>
 

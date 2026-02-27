@@ -21,10 +21,8 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
-      # 这里就是你要的：显式调用 compile 和 jar:jar
-      # 注意：必须先 compile，否则 target/classes 是空的，打出来的包也是空的
       - name: Build with Maven Jar Plugin
-        run: mvn -B clean compile jar:jar --file pom.xml
+        run: mvn -B clean package --file pom.xml
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
