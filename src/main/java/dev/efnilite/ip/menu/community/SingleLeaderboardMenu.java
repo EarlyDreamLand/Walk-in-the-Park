@@ -71,20 +71,27 @@ public class SingleLeaderboardMenu {
 
             // Player head gathering
             ItemStack stack = item.build();
+            SkullMeta meta = (SkullMeta) stack.getItemMeta();
 
-            // if there are more than 36 players, don't show the heads to avoid server crashing
-            // and bedrock has no player skull support
-            if (rank <= 20 && !ParkourUser.isBedrockPlayer(player)) {
-                OfflinePlayer op = Bukkit.getOfflinePlayer(uuid);
+            if (meta != null) {
+                boolean headSet = false;
 
-                if (op.getName() != null && !op.getName().startsWith(".")) { // bedrock players' names with geyser start with a .
-                    SkullMeta meta = (SkullMeta) stack.getItemMeta();
+                if (score.texture() != null && !score.texture().equalsIgnoreCase("null") && !score.texture().isEmpty()) {
+                    SkullSetter.applyTexture(meta, score.texture());
+                    headSet = true;
+                }
 
-                    if (meta != null) {
+                // if there are more than 36 players, don't show the heads to avoid server crashing
+                // and bedrock has no player skull support
+                if (!headSet && rank <= 20 && !ParkourUser.isBedrockPlayer(player)) {
+                    OfflinePlayer op = Bukkit.getOfflinePlayer(uuid);
+
+                    if (op.getName() != null && !op.getName().startsWith(".")) {
                         SkullSetter.setPlayerHead(op, meta);
-                        item.meta(meta);
                     }
                 }
+
+                item.meta(meta);
             }
 
             if (uuid.equals(player.getUniqueId())) {

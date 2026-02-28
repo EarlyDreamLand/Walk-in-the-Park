@@ -27,6 +27,7 @@ import dev.efnilite.vilib.util.Colls;
 import dev.efnilite.vilib.util.Locations;
 import dev.efnilite.vilib.util.Probs;
 import dev.efnilite.vilib.util.Task;
+import dev.efnilite.vilib.util.SkullSetter;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -573,7 +574,11 @@ public class ParkourGenerator {
             return;
         }
 
-        getPlayers().forEach(player -> leaderboard.put(player.getUUID(), new Score(player.getName(), time, difficulty, score)));
+        getPlayers().forEach(player -> {
+            String texture = SkullSetter.getTexture(player.player);
+
+            leaderboard.put(player.getUUID(), new Score(player.getName(), time, difficulty, score, texture));
+        });
     }
 
     private void deleteSchematic() {

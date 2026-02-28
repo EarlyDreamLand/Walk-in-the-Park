@@ -19,7 +19,7 @@ import dev.efnilite.vilib.bstats.charts.SimplePie;
 import dev.efnilite.vilib.bstats.charts.SingleLineChart;
 import dev.efnilite.vilib.inventory.Menu;
 import dev.efnilite.vilib.util.Logging;
-import dev.efnilite.vilib.util.UpdateChecker;
+// import dev.efnilite.vilib.util.UpdateChecker;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
@@ -125,7 +125,7 @@ public final class IP extends ViPlugin {
 
         // ----- Metrics -----
 
-        Metrics metrics = new Metrics(this, 9272);
+        Metrics metrics = new Metrics(this, 29823);
         metrics.addCustomChart(new SimplePie("using_sql", () -> Boolean.toString(Option.SQL)));
         metrics.addCustomChart(new SimplePie("using_rewards", () -> Boolean.toString(Rewards.REWARDS_ENABLED)));
         metrics.addCustomChart(new SimplePie("locale_count", () -> Integer.toString(Locales.locales.size())));
@@ -135,7 +135,7 @@ public final class IP extends ViPlugin {
             return joins;
         }));
 
-        UpdateChecker.check(this, 87226);
+        // UpdateChecker.check(this, 87226);
     }
 
     @Override

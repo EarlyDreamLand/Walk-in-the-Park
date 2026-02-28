@@ -102,11 +102,18 @@ public class PlayerManagementMenu {
 
             // bedrock has no player skull support
             if (menu.getTotalToDisplay().size() <= 36 && !ParkourUser.isBedrockPlayer(other.player)) {
-                if (other.getName() != null && !other.getName().startsWith(".")) { // bedrock players' names with geyser start with a .
+                if (other.getName() != null && !other.getName().startsWith(".")) {
                     SkullMeta meta = (SkullMeta) stack.getItemMeta();
 
                     if (meta != null) {
-                        SkullSetter.setPlayerHead(other.player, meta);
+                        String texture = SkullSetter.getTexture(other.player);
+
+                        if (texture != null && !texture.isEmpty()) {
+                            SkullSetter.applyTexture(meta, texture);
+                        } else {
+                            SkullSetter.setPlayerHead(other.player, meta);
+                        }
+
                         item.meta(meta);
                     }
                 }

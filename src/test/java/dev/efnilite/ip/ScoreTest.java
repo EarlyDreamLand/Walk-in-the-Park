@@ -12,12 +12,12 @@ class ScoreTest {
 
     @BeforeEach
     void setUp() {
-        score = new Score("player", "00:00:00", "1.0", 100);
+        score = new Score("player", "00:00:00", "1.0", 100, null);
     }
 
     @Test
     void testFromString() {
-        var result = Score.fromString("player,00:00:00,1.0,100");
+        var result = Score.fromString("player,00:00:00,1.0,100,null");
 
         assertEquals(score, result);
     }
@@ -33,6 +33,6 @@ class ScoreTest {
     void testToString() {
         var result = score.toString();
 
-        assertEquals("player,00:00:00,1.0,100", result);
+        assertEquals("player,00:00:00,1.0,100,null", result);
     }
 }

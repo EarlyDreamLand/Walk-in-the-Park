@@ -67,11 +67,18 @@ class StorageSQL {
             Map<UUID, Score> scores = new HashMap<>();
 
             while (results.next()) { // advance row
+                String texture = null;
+                try {
+                    texture = results.getString("texture");
+                } catch (Exception ignored) {}
+
                 scores.put(UUID.fromString(results.getString("uuid")), new Score(
                         results.getString("name"),
                         results.getString("time"),
                         results.getString("difficulty"),
-                        results.getInt("score")));
+                        results.getInt("score"),
+                        texture
+                ));
             }
 
             return scores;

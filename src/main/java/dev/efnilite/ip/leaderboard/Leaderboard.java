@@ -171,7 +171,7 @@ public class Leaderboard {
      */
     @NotNull
     public Score get(@NotNull UUID uuid) {
-        return scores.getOrDefault(uuid, new Score("?", "?", "?", 0));
+        return scores.getOrDefault(uuid, new Score("?", "?", "?", 0, null));
     }
 
     /**

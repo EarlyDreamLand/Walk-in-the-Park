@@ -279,10 +279,10 @@ public abstract class ParkourUser {
         }
 
         Leaderboard leaderboard = generator.getMode().getLeaderboard();
-        Score top = leaderboard == null ? new Score("?", "?", "?", 0) : leaderboard.getScoreAtRank(1);
-        Score high = leaderboard == null ? new Score("?", "?", "?", 0) : leaderboard.get(getUUID());
+        Score top = leaderboard == null ? new Score("?", "?", "?", 0, null) : leaderboard.getScoreAtRank(1);
+        Score high = leaderboard == null ? new Score("?", "?", "?", 0, null) : leaderboard.get(getUUID());
         if (top == null) {
-            top = new Score("?", "?", "?", 0);
+            top = new Score("?", "?", "?", 0, null);
         }
 
         board.updateTitle(replace(Locales.getString(locale, "scoreboard.title"), top, high, generator));
